@@ -1,3 +1,29 @@
+/* Container utama untuk form dan notes */
+.main-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Bagian form dengan lebar tetap */
+.form-section {
+  flex: 0 0 300px;
+}
+
+/* Bagian notes mengambil sisa ruang */
+.notes-section {
+  flex: 1;
+}
+
+/* Responsif: jika layar kecil, tumpuk secara vertikal */
+@media (max-width: 800px) {
+  .main-container {
+    flex-direction: column;
+  }
+}
+
+/* --- Styling yang sudah ada --- */
+
 /* Reset dasar dan box-sizing */
 * {
   margin: 0;
@@ -14,32 +40,33 @@ body {
 }
 
 /* Styling Judul "Notes App" */
-#app h1 {
+h1 {
   text-align: center;
-  padding: 20px 0; /* Padding atas dan bawah */
-  font-size: 2.5rem; /* Ukuran font */
+  padding: 20px 0;
 }
 
 h1 span {
-  background: linear-gradient(to right, #007bff, #92c7ff);
+  background: linear-gradient(to right, #007bff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: default;
-  transition: all 0.3s ease-in-out;
+  transition: background 0.3s ease;
 }
 
 h1 span:hover {
-  background: linear-gradient(to right, #0980ff, #97c9ff);
+  background: linear-gradient(to right, #0056b3, #e6e6e6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Styling Form dengan Grid */
+/* Styling Form dengan Grid (jika diperlukan di dalam form-section) */
 #note-form {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   gap: 10px;
-  margin-bottom: 20px;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 #note-form input[type="text"],
@@ -52,20 +79,20 @@ h1 span:hover {
 }
 
 #note-form button {
-  background-color: #007bff; /* Biru */
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
+  padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 #note-form button:hover {
-  background-color: #0056b3; /* Efek hover tombol */
+  background-color: #0056b3;
 }
 
-/* Grid untuk container notes */
+/* Grid untuk container notes (dalam notes-section) */
 #notes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -107,14 +134,4 @@ h1 span:hover {
 .note:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-}
-
-/* Responsif: untuk layar kecil */
-@media (max-width: 600px) {
-  #note-form {
-    grid-template-columns: 1fr;
-  }
-  #app h1 {
-    font-size: 2rem;
-  }
 }

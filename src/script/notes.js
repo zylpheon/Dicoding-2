@@ -1,8 +1,10 @@
 import { fetchNotes } from "./api-get.js";
 import { createNote, deleteNote } from "./api-note.js";
-import LoadingIndicator from "./loading-indicator.js";
+// Pastikan custom element LoadingIndicator sudah diimport agar didaftarkan
+import "../script/loading-indicator.js";
 
-const loadingIndicator = new LoadingIndicator();
+// Ambil referensi ke custom element loading indicator
+const loadingIndicator = document.querySelector("loading-indicator");
 
 const renderNotes = (notes) => {
   const notesContainer = document.getElementById("notes-container");
@@ -30,7 +32,6 @@ const deleteNoteHandler = async (id) => {
 window.deleteNoteHandler = deleteNoteHandler;
 
 const loadNotes = async () => {
-  // Menampilkan indikator loading
   loadingIndicator.show();
   const notes = await fetchNotes();
   renderNotes(notes);
@@ -49,10 +50,8 @@ document
     loadingIndicator.hide();
   });
 
-// Pemanggilan awal untuk loadNotes
+// Panggilan awal loadNotes
 loadNotes();
 
-// Auto refresh: Memanggil loadNotes setiap 2 detik untuk mendapatkan catatan terbaru
-setInterval(() => {
-  loadNotes();
-}, 2000);
+// Optional: Auto refresh jika diperlukan
+setInterval(loadNotes, 5000);
