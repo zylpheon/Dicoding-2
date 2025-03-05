@@ -6,26 +6,26 @@
     <title>Notes App</title>
   </head>
   <body>
-    <!-- Jika menggunakan custom element loading indicator -->
+    <!-- Loading Indicator -->
     <loading-indicator></loading-indicator>
+
     <div id="app">
       <h1><span>Notes App</span></h1>
       <div class="main-container">
+        <!-- Custom Element Note Form -->
         <div class="form-section">
-          <form id="note-form">
-            <input type="text" name="title" placeholder="Note Title" required />
-            <textarea
-              name="content"
-              placeholder="Note Content"
-              required
-            ></textarea>
-            <button type="submit">Add Note</button>
-          </form>
+          <note-form></note-form>
         </div>
         <div class="notes-section">
           <div id="notes-container"></div>
         </div>
       </div>
     </div>
+
+    <!-- Custom Element Footer -->
+    <app-footer></app-footer>
+
+    <!-- Pastikan bundle JavaScript dimuat di bawah -->
+    <script src="app.bundle.js"></script>
   </body>
 </html>

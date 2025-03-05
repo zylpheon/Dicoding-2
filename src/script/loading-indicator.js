@@ -1,22 +1,17 @@
 class LoadingIndicator extends HTMLElement {
   constructor() {
     super();
-    // Membuat shadow DOM
     this.attachShadow({ mode: "open" });
 
-    // Buat wrapper overlay
     const overlay = document.createElement("div");
     overlay.classList.add("loading-overlay");
 
-    // Buat spinner
     const spinner = document.createElement("div");
     spinner.classList.add("loading-spinner");
 
-    // Gabungkan elemen
     overlay.appendChild(spinner);
     this.shadowRoot.appendChild(overlay);
 
-    // Tambahkan styling untuk loading indicator
     const style = document.createElement("style");
     style.textContent = `
       .loading-overlay {
@@ -25,7 +20,7 @@ class LoadingIndicator extends HTMLElement {
         left: 0;
         width: 100%;
         height: 100%;
-        display: none; /* tersembunyi secara default */
+        display: none;
         align-items: center;
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.5);
@@ -45,21 +40,16 @@ class LoadingIndicator extends HTMLElement {
       }
     `;
     this.shadowRoot.appendChild(style);
-
-    // Simpan referensi overlay untuk kemudahan akses
     this._overlay = overlay;
   }
 
-  // Method untuk menampilkan loading indicator
   show() {
     this._overlay.style.display = "flex";
   }
 
-  // Method untuk menyembunyikan loading indicator
   hide() {
     this._overlay.style.display = "none";
   }
 }
 
-// Daftarkan custom element dengan nama 'loading-indicator'
 customElements.define("loading-indicator", LoadingIndicator);
